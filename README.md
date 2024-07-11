@@ -7,17 +7,17 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
     For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
     `iosMain` would be the right folder for such calls.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
+* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
   you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
 
 
 * `Libraries`
   - `Kamel Image` for Async Image loader
-    - https://github.com/Kamel-Media
+    - [Link](https://github.com/Kamel-Media)
   - `Koin` for Dependency Injection
-    - https://insert-koin.io/
+    - [Link](https://insert-koin.io/)
   - `Compose Material and Versions`
-    - https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-compatibility-and-versioning.html
+    - [Link](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-compatibility-and-versioning.html)
 
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…

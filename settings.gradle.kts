@@ -1,4 +1,4 @@
-rootProject.name = "SampleHelloWorld"
+rootProject.name = "ComposeMultiplatformArchitecturePlayground"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
