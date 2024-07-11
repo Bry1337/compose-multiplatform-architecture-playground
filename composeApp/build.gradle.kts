@@ -45,6 +45,7 @@ kotlin {
             implementation(libs.compose.material3)
             implementation(libs.koin.compose)
             implementation(libs.kamel.image)
+            implementation(libs.voyager.navigator)
         }
     }
 }

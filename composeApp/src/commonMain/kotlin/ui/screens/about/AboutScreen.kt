@@ -11,6 +11,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 
 /**
  * Created by Bryan on 7/11/24.
@@ -18,21 +21,30 @@ import androidx.compose.ui.Modifier
  */
 
 
+class AboutScreen: Screen {
+
+    @Composable
+    override fun Content() {
+        AboutScreenContent()
+    }
+}
+
 @Composable
-fun AboutScreen() {
+fun AboutScreenContent() {
     Column {
         Toolbar()
     }
 }
 
 @Composable
-private fun Toolbar(
-    onUpButtonClick: () -> Unit = {}
-) {
+private fun Toolbar() {
+    val navigator = LocalNavigator.currentOrThrow
     TopAppBar(
         title = { Text(text = "About Device") },
         navigationIcon = {
-            IconButton(onClick = onUpButtonClick) {
+            IconButton(onClick = {
+                navigator.pop()
+            }) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = "Back"

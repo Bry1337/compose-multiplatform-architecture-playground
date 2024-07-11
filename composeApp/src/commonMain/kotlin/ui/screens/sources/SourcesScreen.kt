@@ -8,6 +8,9 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import org.koin.compose.koinInject
 
 /**
@@ -16,21 +19,31 @@ import org.koin.compose.koinInject
  */
 
 
+class SourcesScreen: Screen {
+
+    @Composable
+    override fun Content() {
+        SourcesScreenContent()
+    }
+
+}
+
 @Composable
-fun SourcesScreen(
-    viewModel: SourcesViewModel = koinInject()
-) {
+fun SourcesScreenContent() {
     Column {
         Appbar()
     }
 }
 
 @Composable
-private fun Appbar(onUpButtonClick: () -> Unit = {}) {
+private fun Appbar() {
+    val navigator = LocalNavigator.currentOrThrow
     TopAppBar(
         title = { Text(text = "Sources") },
         navigationIcon = {
-          IconButton(onClick = onUpButtonClick) {
+          IconButton(onClick = {
+              navigator.pop()
+          }) {
               Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Up Button")
           }
         })
