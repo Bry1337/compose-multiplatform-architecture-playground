@@ -5,6 +5,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.transitions.SlideTransition
+import di.appModule
+import org.koin.compose.KoinApplication
 import ui.screens.articles.ArticlesScreen
 import ui.utils.MyApplicationTheme
 
@@ -15,9 +18,15 @@ import ui.utils.MyApplicationTheme
 
 @Composable
 fun MainApp() {
-    MyApplicationTheme {
-        Scaffold(modifier = Modifier.fillMaxSize()) {
-            Navigator(ArticlesScreen())
+    KoinApplication(application = {
+        modules(appModule())
+    }) {
+        MyApplicationTheme {
+            Scaffold(modifier = Modifier.fillMaxSize()) {
+                Navigator(ArticlesScreen()) { navigator ->
+                    SlideTransition(navigator)
+                }
+            }
         }
     }
 }
