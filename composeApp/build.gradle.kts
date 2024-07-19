@@ -7,9 +7,14 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.google.devtools.ksp)
+    alias(libs.plugins.ktorfit.plugin)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.kotlinter)
 }
 
 kotlin {
+    task("testClasses")
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -33,6 +38,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.ktor.client.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -43,14 +49,38 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.compose.material)
             implementation(libs.compose.material3)
+            // Compose ViewModel for Compose Multiplatform
+            implementation(libs.compose.viewmodel)
+            // Koin Dependency Injection
+            implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            // Kamel Image processor
             implementation(libs.kamel.image)
+            // Voyager navigation library
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.transitions)
+            // Ktor Client
+            implementation(libs.bundles.ktor)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.kotlin.serialization)
+            // Ktorfit
+            implementation(libs.ktorfit.lib)
+            implementation(libs.ktorfit.response.converter)
+            implementation(libs.ktorfit.call.converter)
+            implementation(libs.ktorfit.flow.converter)
+
+            // Only needed when you want to use Kotlin Serialization
+            implementation(libs.ktor.client.serialization)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
 
 android {
-    namespace = "org.example.composemphelloworld"
+    namespace = "io.bry1337.composemultiplatform.playground"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -58,7 +88,7 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        applicationId = "org.example.composemphelloworld"
+        applicationId = "io.bry1337.composemultiplatform.playground"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -83,6 +113,7 @@ android {
     }
     dependencies {
         debugImplementation(compose.uiTooling)
+        implementation(libs.koin.android)
     }
 }
 
