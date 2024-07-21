@@ -1,6 +1,7 @@
 package di
 
 import org.koin.dsl.module
+import ui.screens.articles.ArticlesViewModel
 import ui.screens.sources.SourcesViewModel
 
 /**
@@ -17,4 +18,5 @@ import ui.screens.sources.SourcesViewModel
  */
 val provideViewModelModule = module {
     viewModelDefinition { SourcesViewModel(get()) }
+    viewModelDefinition { ArticlesViewModel(get()) }
 }

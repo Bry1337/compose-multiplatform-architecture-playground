@@ -11,16 +11,25 @@ import network.models.ArticleResponse
 
 class NetworkRepository(
     private val apiService: ApiServiceHelper
-) {
+): NetworkRepositoryHelper {
     // Getting Articles Sample
     val country = "us"
     val category = "business"
     val apiKey = "f67ace1b27b24ce4b95c7f71fde88920"
+    val query = "apple"
 
     fun getArticles(): Flow<NetworkResult<ArticleResponse>> {
         return flow {
             emit(toResultFlow {
                 apiService.getArticles(country, category, apiKey)
+            })
+        }
+    }
+
+    override fun getAllNews(): Flow<NetworkResult<ArticleResponse>> {
+        return flow {
+            emit(toResultFlow {
+                apiService.getAllNews(query = query, apiKey)
             })
         }
     }

@@ -16,4 +16,8 @@ class ApiServiceImpl(private val apiService: ApiService) : ApiServiceHelper {
     ): Response<ArticleResponse> {
         return apiService.getArticles(country = country, category = category, apiKey = apiKey)
     }
+
+    override suspend fun getAllNews(query: String, apiKey: String): Response<ArticleResponse> {
+        return apiService.getAllNews(query = query, apiKey = apiKey)
+    }
 }

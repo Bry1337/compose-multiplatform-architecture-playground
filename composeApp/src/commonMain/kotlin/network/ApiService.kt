@@ -19,4 +19,10 @@ interface ApiService {
         @Query("apiKey") apiKey: String
     ): Response<ArticleResponse>
 
+    @GET("everything")
+    suspend fun getAllNews(
+        @Query("q") query: String,
+        @Query("apiKey") apiKey: String
+    ): Response<ArticleResponse>
+
 }

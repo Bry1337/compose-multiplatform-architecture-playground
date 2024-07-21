@@ -14,4 +14,9 @@ interface ApiServiceHelper {
         category: String,
         apiKey: String
     ): Response<ArticleResponse>
+
+    suspend fun getAllNews(
+        query: String,
+        apiKey: String
+    ): Response<ArticleResponse>
 }
